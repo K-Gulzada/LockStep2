@@ -1,19 +1,17 @@
-﻿using System;
+﻿using LockStep2.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LockStep.Library.Domain.Finance
+namespace LockStep2.Library.Domain.NewFolder1
 {
-    public class Price
+    public class Price : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
         public Book Book { get; set; }
         public string Value { get; set; }
         public DateTime From { get; set; }
-        public DateTime To { get; set; }
+        public DateTime? To { get; set; }
     }
 }

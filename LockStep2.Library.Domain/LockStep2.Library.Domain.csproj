@@ -73,10 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewFolder1\Author.cs" />
-    <Compile Include="NewFolder1\BaseModel.cs" />
-    <Compile Include="NewFolder1\Book.cs" />
-    <Compile Include="NewFolder1\Genre.cs" />
+    <Compile Include="DbModels\Author.cs" />
+    <Compile Include="DbModels\BaseModel.cs" />
+    <Compile Include="DbModels\Book.cs" />
+    <Compile Include="DbModels\Genre.cs" />
+    <Compile Include="NewFolder1\Check.cs" />
+    <Compile Include="NewFolder1\Payment.cs" />
+    <Compile Include="NewFolder1\Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
