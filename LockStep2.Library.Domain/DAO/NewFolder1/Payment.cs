@@ -9,9 +9,10 @@ namespace LockStep2.Library.Domain.NewFolder1
 {
     public class Payment : BaseModel
     {
-        public string IdRequest { get; set; }
+        public string PaymentId { get; set; }
         public string Email { get; set; }
         public Book Book { get; set; }
+        public decimal Sum { get; set; }
         public int Status { get; set; }
     }
 }

@@ -9,9 +9,11 @@ namespace LockStep2.Controllers
 {
     public class PayController : ApiController
     {
-        public IHttpActionResult Get(int id, double sum, string email)
+        public IHttpActionResult Get(string paymentId, int bookId, decimal sum, string email)
         {
             return Ok();
         }
     }
 }
+
+//autofac dependency injection

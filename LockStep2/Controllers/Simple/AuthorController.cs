@@ -13,27 +13,26 @@ namespace LockStep2.Controllers.Simple
     public class AuthorController : Controller
     {
         //private AuthorRepository db = new AuthorRepository(new LibraryDbContext());
-        private readonly IAuthorRepository db;
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
 
-        public AuthorController(IAuthorRepository db)
-        {
-            this.db = db;
+        public AuthorController()
+        {            
         }
 
         // GET: Authors
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Get());
+            return View( db.Authors.ToList());
         }
 
         // GET: Authors/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = await db.GetById(id);
+            Author author = db.Authors.FirstOrDefault(x=>x.Id == id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -56,7 +55,7 @@ namespace LockStep2.Controllers.Simple
         {
             if (ModelState.IsValid)
             {
-                await db.Insert(author);
+                //await db.Authors(author);
                 return RedirectToAction("Index");
             }
 
@@ -64,7 +63,7 @@ namespace LockStep2.Controllers.Simple
         }
 
         // GET: Authors/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+       /* public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -76,7 +75,7 @@ namespace LockStep2.Controllers.Simple
                 return HttpNotFound();
             }
             return View(author);
-        }
+        }*/
 
         // POST: Authors/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
@@ -87,14 +86,14 @@ namespace LockStep2.Controllers.Simple
         {
             if (ModelState.IsValid)
             {
-                await db.Update(author);
+               // await db.Update(author);
                 return RedirectToAction("Index");
             }
             return View(author);
         }
 
         // GET: Authors/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        /*public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -106,14 +105,14 @@ namespace LockStep2.Controllers.Simple
                 return HttpNotFound();
             }
             return View(author);
-        }
+        }*/
 
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.Delete(id);
+           // await db.Delete(id);
             return RedirectToAction("Index");
         }
     }

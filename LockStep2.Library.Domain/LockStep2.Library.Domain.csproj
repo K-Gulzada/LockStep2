@@ -73,13 +73,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbModels\Author.cs" />
-    <Compile Include="DbModels\BaseModel.cs" />
-    <Compile Include="DbModels\Book.cs" />
-    <Compile Include="DbModels\Genre.cs" />
-    <Compile Include="NewFolder1\Check.cs" />
-    <Compile Include="NewFolder1\Payment.cs" />
-    <Compile Include="NewFolder1\Price.cs" />
+    <Compile Include="DAO\DbModels\Author.cs" />
+    <Compile Include="DAO\DbModels\BaseModel.cs" />
+    <Compile Include="DAO\DbModels\Book.cs" />
+    <Compile Include="DAO\DbModels\Genre.cs" />
+    <Compile Include="DAO\NewFolder1\Check.cs" />
+    <Compile Include="DAO\NewFolder1\Payment.cs" />
+    <Compile Include="DAO\NewFolder1\Price.cs" />
+    <Compile Include="DTO\Common\AuthorVM.cs" />
+    <Compile Include="DTO\Common\BookVM.cs" />
+    <Compile Include="DTO\Common\GenreVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
+    <Folder Include="DTO\Finance\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
