@@ -3,8 +3,11 @@ using Autofac.Integration.Mvc;
 using LockStep2.Models;
 using LockStep2.Repo.Interfaces;
 using LockStep2.Repo.Repositories;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Linq;
 using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(LockStep2.Startup))]
@@ -30,6 +33,44 @@ namespace LockStep2
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacMvc();
+        }
+
+        private void SetupAuth()
+        {
+            var context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            (new string[] { "Admin", "Manager", "User" }).ToList().ForEach(p => CreateRole(roleManager, p));
+           
+            var user = new ApplicationUser { UserName = "stepAdmin@gmail.com", Email= "stepAdmin@gmail.com" };
+            string userPwd = "A@Z200711";
+
+            var checkUser = userManager.Create(user, userPwd);
+            if (checkUser.Succeeded)
+                userManager.AddToRole(user.Id, "Admin");
+        }
+
+        private class User
+        {
+            public string Name { get; set; }
+            public string Pwd { get; set; }
+            public string Role { get; set; }
+        }
+
+        private void CreateRole(RoleManager<IdentityRole> manager, string name)
+        {
+            if (!manager.RoleExists("Admin"))
+                manager.Create(new IdentityRole { Name = "Admin" });
+        }
+
+        private void CreateUser(RoleManager<IdentityRole> manager, string name, string pwd, string role)
+        {
+            var user = new ApplicationUser { UserName = name, Email = name };
+
+            var checkUser = manager.Create(user, pwd);
+            if (checkUser.Succeeded)
+                manager.AddToRole(user.Id, "Admin");
         }
     }
 }

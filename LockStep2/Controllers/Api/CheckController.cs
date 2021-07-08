@@ -15,7 +15,7 @@ namespace LockStep2.Controllers
     {
         // GET: Check
         private ApplicationDbContext db = new ApplicationDbContext();
-       /* public async Task<IHttpActionResult> Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
             if (id <= 0)
                 return BadRequest("Входящий параметр не определен");
@@ -29,7 +29,9 @@ namespace LockStep2.Controllers
 
             if (price is null)
                 return Ok(new { id = id, product = book.Title, price = price.Value });
-        }*/
+
+            return null;
+        }
 
         private async Task<Book> SafeGetBook(int id)
         {
