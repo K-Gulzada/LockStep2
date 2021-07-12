@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using LockStep2.Library.Domain.NewFolder1;
+using LockStep2.Library.Domain.DAO.Common;
+using LockStep2.Library.Domain.DAO.Finance;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -23,10 +24,16 @@ namespace LockStep2.Models
     {
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }        
+       /* public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<BookGenre> BookGenres{ get; set; }
+        public DbSet<BookComment> BookComments{ get; set; }
+        public DbSet<BookVote> BookVotes{ get; set; }
+        public DbSet<Product> Products{ get; set; }*/
         public DbSet<Check> Checks { get; set; }
         public DbSet<Payment> Payments{ get; set; }
         public DbSet<Price> Prices{ get; set; }
+      
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

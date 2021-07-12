@@ -1,4 +1,4 @@
-﻿using LockStep2.Library.Domain.NewFolder1;
+﻿using LockStep2.Library.Domain.DAO.Common;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

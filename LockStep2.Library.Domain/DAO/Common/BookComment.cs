@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LockStep2.Library.Domain.NewFolder1
+namespace LockStep2.Library.Domain.DAO.Common
 {
-    public class Payment : BaseModel
+    public class BookComment : BaseModel
     {
-        public string PaymentId { get; set; }
         public string Email { get; set; }
         public Book Book { get; set; }
-        public decimal Sum { get; set; }
-        public int Status { get; set; }
+        public string Description { get; set; }
+        public BookVote BookVote { get; set; }
     }
 }

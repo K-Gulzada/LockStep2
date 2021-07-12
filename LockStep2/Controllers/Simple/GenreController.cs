@@ -1,5 +1,6 @@
 ﻿using LockStep2.Models;
 using LockStep2.Repo.Interfaces;
+using LockStep2.Repo.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,7 @@ namespace LockStep2.Controllers.Simple
 {
     public class GenreController : Controller
     {
-        private readonly IGenreRepository db;
-
-        public GenreController(IGenreRepository db)
-        {
-            this.db = db;
-        }
+        private GenreRepository db = new GenreRepository(new ApplicationDbContext());
 
         // GET: Genres
         public async Task<ActionResult> Index()

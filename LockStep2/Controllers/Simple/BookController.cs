@@ -1,5 +1,6 @@
 ﻿using LockStep2.Models;
 using LockStep2.Repo.Interfaces;
+using LockStep2.Repo.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,7 @@ namespace LockStep2.Controllers.Simple
 {
     public class BookController : Controller
     {
-        private readonly IBookRepository db;
-
-        public BookController(IBookRepository db)
-        {
-            this.db = db;
-        }
+        private BookRepository db = new BookRepository(new ApplicationDbContext());
 
         // GET: Books
         public async Task<ActionResult> Index()

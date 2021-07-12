@@ -1,16 +1,16 @@
-﻿using LockStep2.Library.Domain.NewFolder1;
+﻿using LockStep2.Library.Domain.DAO.Common;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace LockStep2.Models
 {
-    public class Author : BaseModel
+    public class Genre : BaseModel
     {
 
         [Required]
         [MaxLength(30)]
-        public string FullName { get; set; }
-
+        public string Name { get; set; }
         public ICollection<Book> Books { get; set; }
+
     }
 }
