@@ -1,4 +1,4 @@
-﻿using LockStep2.Library.Domain.NewFolder1;
+﻿using LockStep2.Library.Domain.DAO.Finance;
 using LockStep2.Models;
 using System;
 using System.Collections.Generic;

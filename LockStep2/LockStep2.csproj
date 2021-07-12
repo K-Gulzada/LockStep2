@@ -241,6 +241,10 @@
     <Compile Include="Migrations\202107071338172_test.Designer.cs">
       <DependentUpon>202107071338172_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107121004582_UpdateEntities.cs" />
+    <Compile Include="Migrations\202107121004582_UpdateEntities.Designer.cs">
+      <DependentUpon>202107121004582_UpdateEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -263,6 +267,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\LockStep2.mdf" />
+    <Content Include="App_Data\LockStep2_log.ldf">
+      <DependentUpon>LockStep2.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -336,7 +344,6 @@
     <Content Include="Views\Genre\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Check\" />
     <Folder Include="Views\Pay\" />
   </ItemGroup>
@@ -365,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107071338172_test.resx">
       <DependentUpon>202107071338172_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107121004582_UpdateEntities.resx">
+      <DependentUpon>202107121004582_UpdateEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

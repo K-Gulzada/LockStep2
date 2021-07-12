@@ -64,13 +64,13 @@ namespace LockStep2
                 manager.Create(new IdentityRole { Name = "Admin" });
         }
 
-        private void CreateUser(RoleManager<IdentityRole> manager, string name, string pwd, string role)
+        private void CreateUser(UserManager<ApplicationUser> manager, string name, string pwd, string role)
         {
             var user = new ApplicationUser { UserName = name, Email = name };
 
             var checkUser = manager.Create(user, pwd);
             if (checkUser.Succeeded)
-                manager.AddToRole(user.Id, "Admin");
+                manager.AddToRole(user.Id, role);
         }
     }
 }

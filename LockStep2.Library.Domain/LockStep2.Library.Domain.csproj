@@ -73,13 +73,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\DbModels\Author.cs" />
-    <Compile Include="DAO\DbModels\BaseModel.cs" />
-    <Compile Include="DAO\DbModels\Book.cs" />
-    <Compile Include="DAO\DbModels\Genre.cs" />
-    <Compile Include="DAO\NewFolder1\Check.cs" />
-    <Compile Include="DAO\NewFolder1\Payment.cs" />
-    <Compile Include="DAO\NewFolder1\Price.cs" />
+    <Compile Include="DAO\Common\Author.cs" />
+    <Compile Include="DAO\Common\BaseModel.cs" />
+    <Compile Include="DAO\Common\Book.cs" />
+    <Compile Include="DAO\Common\BookAuthor.cs" />
+    <Compile Include="DAO\Common\BookComment.cs" />
+    <Compile Include="DAO\Common\BookGenre.cs" />
+    <Compile Include="DAO\Common\BookVote.cs" />
+    <Compile Include="DAO\Common\Genre.cs" />
+    <Compile Include="DAO\Common\Product.cs" />
+    <Compile Include="DAO\Finance\Check.cs" />
+    <Compile Include="DAO\Finance\Payment.cs" />
+    <Compile Include="DAO\Finance\Price.cs" />
     <Compile Include="DTO\Common\AuthorVM.cs" />
     <Compile Include="DTO\Common\BookVM.cs" />
     <Compile Include="DTO\Common\GenreVM.cs" />
