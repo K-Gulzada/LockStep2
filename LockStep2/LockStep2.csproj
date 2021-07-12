@@ -336,7 +336,7 @@
     <Content Include="Views\Genre\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="AppData\" />
     <Folder Include="Views\Check\" />
     <Folder Include="Views\Pay\" />
   </ItemGroup>
