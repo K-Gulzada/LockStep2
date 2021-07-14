@@ -1,6 +1,7 @@
 ﻿using LockStep2.Models;
 using LockStep2.Repo.Interfaces;
 using LockStep2.Repo.Repositories;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,16 @@ namespace LockStep2.Controllers.Simple
         private BookRepository db = new BookRepository(new ApplicationDbContext());
 
         // GET: Books
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(/*int? page*/)
         {
-            return View(await db.Get());
+            var books = await db.Get();
+
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+
+            return View(books.ToPagedList(pageNumber, pageSize));
         }
+
 
         // GET: Books/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -36,6 +43,21 @@ namespace LockStep2.Controllers.Simple
             return View(book);
         }
 
+        [HttpPost, ActionName("PartialView")]
+        public async Task<ActionResult> PartialDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = await db.GetById(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(book);
+        }
+
         // GET: Books/Create
         public ActionResult Create()
         {
@@ -47,11 +69,11 @@ namespace LockStep2.Controllers.Simple
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name")] Book book)
+        public ActionResult Create([Bind(Include = "Id,Name")] Book book)
         {
             if (ModelState.IsValid)
             {
-                await db.Insert(book);
+                db.Insert(book);
 
                 return RedirectToAction("Index");
             }

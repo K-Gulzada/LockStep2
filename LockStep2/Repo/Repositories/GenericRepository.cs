@@ -42,10 +42,10 @@ namespace LockStep2.Repo.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public virtual async Task Insert(T entity)
+        public void Insert(T entity)
         {
             _dbSet.Add(entity);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
         }
 
         public virtual async Task Delete(object id)
