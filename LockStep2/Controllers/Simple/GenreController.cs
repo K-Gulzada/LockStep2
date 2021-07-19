@@ -47,11 +47,11 @@ namespace LockStep2.Controllers.Simple
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name")] Genre genre)
+        public ActionResult Create([Bind(Include = "Id,Name")] Genre genre)
         {
             if (ModelState.IsValid)
             {
-                await db.Insert(genre);
+                db.Insert(genre);
 
                 return RedirectToAction("Index");
             }

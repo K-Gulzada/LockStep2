@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -40,37 +41,31 @@ namespace LockStep2
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-
             (new string[] { "Admin", "Manager", "User" }).ToList().ForEach(p => CreateRole(roleManager, p));
-           
-            var user = new ApplicationUser { UserName = "stepAdmin@gmail.com", Email= "stepAdmin@gmail.com" };
-            string userPwd = "A@Z200711";
-
-            var checkUser = userManager.Create(user, userPwd);
-            if (checkUser.Succeeded)
-                userManager.AddToRole(user.Id, "Admin");
+            new List<User>
+            {
+                new User {Name = "stepAdmin@gmail.com", Pwd = "qwerty123", Role = "Admin"},
+                new User {Name = "manager@gmail.com", Pwd = "qwerty456", Role = "Manager"},
+                new User {Name = "user@gmail.com", Pwd = "qwerty789", Role = "User"},
+            }.ForEach(p => CreateUser(userManager, p));
         }
-
         private class User
         {
             public string Name { get; set; }
             public string Pwd { get; set; }
             public string Role { get; set; }
         }
-
         private void CreateRole(RoleManager<IdentityRole> manager, string name)
         {
-            if (!manager.RoleExists("Admin"))
-                manager.Create(new IdentityRole { Name = "Admin" });
+            if (!manager.RoleExists(name))
+                manager.Create(new IdentityRole { Name = name });
         }
-
-        private void CreateUser(UserManager<ApplicationUser> manager, string name, string pwd, string role)
+        private void CreateUser(UserManager<ApplicationUser> manager, User usr)
         {
-            var user = new ApplicationUser { UserName = name, Email = name };
-
-            var checkUser = manager.Create(user, pwd);
+            var user = new ApplicationUser { UserName = usr.Name, Email = usr.Name };
+            var checkUser = manager.Create(user, usr.Pwd);
             if (checkUser.Succeeded)
-                manager.AddToRole(user.Id, role);
+                manager.AddToRole(user.Id, usr.Role);
         }
     }
 }

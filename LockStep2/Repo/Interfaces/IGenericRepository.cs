@@ -16,7 +16,7 @@ namespace LockStep2.Repo.Interfaces
 
         Task<T> GetById(object id);
 
-        Task Insert(T entity);
+        void Insert(T entity);
 
         Task Delete(object id);
 
