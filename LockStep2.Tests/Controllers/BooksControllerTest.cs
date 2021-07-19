@@ -29,7 +29,16 @@ namespace LockStep2.Tests.Controllers
         [TestMethod]
         public void Details()
         {
+            var controller = new BookController();
 
+            var result = controller.Details(1) as ViewResult;
+
+            if (result is null) Assert.Fail("Empty result");
+
+            var book = (Book)result.ViewData.Model;
+            if (book is null) Assert.Fail("Empty model");
+
+            Assert.IsNotNull(result);
         }
     }
 }
